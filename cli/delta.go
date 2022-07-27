@@ -1,8 +1,10 @@
 package cli
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 
 	"deltagopher/delta"
@@ -51,6 +53,13 @@ func GetDeltaCommand() *cli.Command {
 			if err != nil {
 				panic(err)
 			}
+
+			j, err := json.MarshalIndent(*d, "", "  ")
+			if err != nil {
+				log.Fatalf(err.Error())
+			}
+			fmt.Printf("Report: \n %s\n", string(j))
+
 			return nil
 		},
 	}

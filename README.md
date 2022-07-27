@@ -1,14 +1,36 @@
+Upd. : cli added
+
 # deltagopher
 
 Command line(in future) utility to get the delta between 2 file.
 Includes signature, delta and patch(in future) commands.
 
+
+# Usage
+
+## generate a signature 
+```shell
+./deltagopher signature --block-size 3 --filename old.txt
+
+```
+
+## generate a delta
+```shell
+./deltagopher delta --sigfile signature.yml new.txt
+
+```
+
 # Installation
 
 You need a Golang version 1.16 or greater installed on your PC.
-To install dependencies, run from root directory:
+1. To install dependencies, run from root directory:
 ```shell
 go get
+```
+
+2. To build the CLI
+```shell
+go build
 ```
 
 # Approach
