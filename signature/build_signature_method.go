@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"gordiff/hash"
+	"deltagopher/hash"
 )
 
 func allZero(s []byte) bool {

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 
-	"gordiff/hash"
-	"gordiff/signature"
+	"deltagopher/hash"
+	"deltagopher/signature"
 )
 
 const MOD_ADLER uint32 = 65521
