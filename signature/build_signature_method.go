@@ -17,6 +17,7 @@ func allZero(s []byte) bool {
 	return true
 }
 
+// NextChunkHashes gets the weak/strong hashes of the new obtained chunk
 func (sb *SignatureBuilder) NextChunkHashes() (uint32, [16]byte, error) {
 	n, err := sb.reader.Read(sb.buf)
 	sb.curPos += n
@@ -33,6 +34,7 @@ func (sb *SignatureBuilder) NextChunkHashes() (uint32, [16]byte, error) {
 	return weakHash, strongHash, nil
 }
 
+// BuildSignature create a Signature object representing the chunked and hashed file content
 func (sb *SignatureBuilder) BuildSignature() *Signature {
 	s := &Signature{
 		Checksums: nil,

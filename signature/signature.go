@@ -6,18 +6,29 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// The single chunk checksum
 type Checksum struct {
-	WeakCheaksum   uint32   `yaml:"weak"`
+	// weak hash
+	WeakCheaksum uint32 `yaml:"weak"`
+
+	// strong hash
 	StrongChecksum [16]byte `yaml:"strong"`
-	Start          int      `yaml:"start"`
-	End            int      `yaml:"end"`
+
+	// start position of the chunk
+	Start int `yaml:"start"`
+
+	// end position of the chunk
+	End int `yaml:"end"`
 }
 
 type Signature struct {
 	Checksums []*Checksum `yaml:"checksums"`
 
-	BlockSize int    `yaml:"size"`
-	Hashing   string `yaml:"algo"`
+	// size of the chunk
+	BlockSize int `yaml:"size"`
+
+	// hashing algorithm
+	Hashing string `yaml:"algo"`
 }
 
 func (s *Signature) MarshalYAML() ([]byte, error) {

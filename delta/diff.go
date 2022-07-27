@@ -1,5 +1,6 @@
 package delta
 
+// Delta of a single chunk
 type SingleDelta struct {
 	WeakCheaksum   uint32    `yaml:"weak,omitempty"`
 	StrongChecksum *[16]byte `yaml:"strong,omitempty"`

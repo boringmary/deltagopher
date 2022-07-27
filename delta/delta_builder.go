@@ -43,6 +43,7 @@ func NewDeltaBuilder(signature *signature.Signature, reader io.ReadSeeker) *Delt
 	}
 }
 
+// BuildDelta roll across the new file content and generate delta obj on the fly.
 func (db *DeltaBuilder) BuildDelta() *Delta {
 	weakChecksumsMap := map[uint32][16]byte{}
 	foundHashes := map[uint32]bool{}
@@ -91,6 +92,7 @@ func (db *DeltaBuilder) AppendFilteredCandidate(strongHash [16]byte) bool {
 	}
 }
 
+// PullRemainingBytes check if we have some already traversed bytes in the buf that has to be inserted
 func (db *DeltaBuilder) PullRemainingBytes() {
 	if len(db.visited) != 0 {
 		db.delta.Inserted = append(db.delta.Inserted, &SingleDelta{
@@ -101,7 +103,7 @@ func (db *DeltaBuilder) PullRemainingBytes() {
 	}
 }
 
-// RollAndSearh rolls the sliding window and search for already existing blocks
+// Roll rolls the sliding window and search for already existing blocks
 func (db *DeltaBuilder) Roll(checksums map[uint32][16]byte) error {
 	n, err := db.reader.Read(db.window)
 	db.pos += n

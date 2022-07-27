@@ -8,9 +8,14 @@ import (
 
 // Delta represents the difference betweeb 2 byte arrays
 type Delta struct {
+	// blocks to be inserted
 	Inserted []*SingleDelta `yaml:"insert,omitempty"`
-	Deleted  []*SingleDelta `yaml:"delete,omitempty"`
-	Copied   []*SingleDelta `yaml:"copy,omitempty"`
+
+	// blocks to be deleted
+	Deleted []*SingleDelta `yaml:"delete,omitempty"`
+
+	// blocks to be copied
+	Copied []*SingleDelta `yaml:"copy,omitempty"`
 }
 
 func NewDelta() *Delta {

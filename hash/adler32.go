@@ -2,6 +2,8 @@ package hash
 
 const MOD_ADLER uint32 = 65521
 
+// Adler32Checksums generates 3 integers - a, b and their sum
+// https://en.wikipedia.org/wiki/Adler-32
 func Adler32Checksums(block []byte) (uint32, uint32, uint32) {
 	var a, b uint32 = 1, 0
 	for i := 0; i < len(block); i++ {
