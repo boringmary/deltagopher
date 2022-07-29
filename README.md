@@ -8,13 +8,31 @@ Includes signature, delta and patch(in future) commands.
 
 # Usage
 
-## generate a signature 
+## generate a signature and a delta
 ```shell
-./deltagopher signature --block-size 3 --filename old.txt
+./deltagopher --block-size 256 old.txt new.txt
+```
+It will display the diff, but deleted and to copy content won't be displayed. If you 
+want a full report see the next command.
+```shell
+-  [ 647-657 ] ----------
++  [ 726-789 ] um vulputate gravida. Vestibulum ante ipsum primis in faucibus 
+c  [ 779-789 ] ----------
+```
+where _-, +_ and _c_ - to delete, to insert and to copy,
+
+## generate a signature and a delta WITH FULL REPORT (!increases the size of generated files!)
+```shell
+./deltagopher --full --block-size 256 old.txt new.txt
+```
+
+## generate a signature only
+```shell
+./deltagopher signature --block-size 256 --filename old.txt
 
 ```
 
-## generate a delta
+## generate a delta only
 ```shell
 ./deltagopher delta --sigfile signature.yml new.txt
 

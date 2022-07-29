@@ -19,6 +19,9 @@ type Checksum struct {
 
 	// end position of the chunk
 	End int `yaml:"end"`
+
+	// content of the block (only used if --full flag is set)
+	Content []byte
 }
 
 type Signature struct {

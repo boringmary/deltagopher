@@ -41,7 +41,7 @@ func (sb *SignatureBuilder) BuildSignature() *Signature {
 		BlockSize: sb.size,
 		Hashing:   "adler32",
 	}
-
+	var ch *Checksum
 	for {
 		weakHash, strongHash, err := sb.NextChunkHashes()
 		if err != nil {
@@ -55,12 +55,16 @@ func (sb *SignatureBuilder) BuildSignature() *Signature {
 			panic(err)
 		}
 
-		s.Checksums = append(s.Checksums, &Checksum{
+		ch = &Checksum{
 			WeakCheaksum:   weakHash,
 			StrongChecksum: strongHash,
 			Start:          sb.curPos - sb.size,
 			End:            sb.curPos,
-		})
+		}
+		if sb.full {
+			ch.Content = append(ch.Content, sb.buf...)
+		}
+		s.Checksums = append(s.Checksums, ch)
 	}
 	return s
 }

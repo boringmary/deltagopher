@@ -13,14 +13,11 @@ const defaultSigFilename = "signature.yml"
 
 func GetSignatureCommand() *cli.Command {
 	return &cli.Command{
-		Name:        "signature",
-		Usage:       "do the doo",
-		UsageText:   "doo - does the dooing",
-		Description: "no really, there is a lot of dooing to be done",
-		ArgsUsage:   "[arrgh]",
+		Name: "signature",
 		Flags: []cli.Flag{
 			&cli.IntFlag{Name: "block-size"},
 			&cli.StringFlag{Name: "filename"},
+			&cli.BoolFlag{Name: "full"},
 		},
 		BashComplete: func(cCtx *cli.Context) {
 			fmt.Fprintf(cCtx.App.Writer, "lipstick\nkiss\nme\nlipstick\nringo\n")
@@ -32,7 +29,7 @@ func GetSignatureCommand() *cli.Command {
 		Action: func(cCtx *cli.Context) error {
 			f1, err := os.Open(cCtx.Value("filename").(string))
 			defer f1.Close()
-			sb := signature.NewSignatureBuilder(f1, cCtx.Value("block-size").(int))
+			sb := signature.NewSignatureBuilder(f1, cCtx.Value("block-size").(int), cCtx.Bool("full"))
 			signature := sb.BuildSignature()
 
 			// Try marshal and save
