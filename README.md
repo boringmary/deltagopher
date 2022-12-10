@@ -1,9 +1,7 @@
-Upd. : cli added
-
 # deltagopher
 
-Command line(in future) utility to get the delta between 2 file.
-Includes signature, delta and patch(in future) commands.
+Command line utility to get the delta between 2 file.
+Includes signature, delta and patch commands.
 
 
 # Usage
